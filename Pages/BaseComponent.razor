@@ -1,0 +1,16 @@
+﻿@inherits BaseComponentModel<GlobalResource>
+
+<CascadingValue Value="this">
+    <SfToastShowMessage @ref="@ToastObj" />
+    <TitleHead>
+        <Content>
+            @HeaderMessage
+        </Content>
+    </TitleHead>
+
+    @ChildContent
+</CascadingValue>
+
+
+
+

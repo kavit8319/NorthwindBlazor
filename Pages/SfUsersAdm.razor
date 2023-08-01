@@ -1,0 +1,75 @@
+﻿@page "/SfUsersAdm"
+@inherits SfUsersAdmModel<UsersAdmRes>
+@using Syncfusion.Blazor.DropDowns
+@attribute [Authorize(Roles = "Admin")]
+<CustomGridAddEditDel @ref="@customGrid" OnCustomActionBegin="CustomActionBegin" ID="grid"
+    TValue="UserReturnView">
+    <SfDataManager AdaptorInstance="typeof(UserAdmAdaptor)" Adaptor="Adaptors.CustomAdaptor"></SfDataManager>
+
+    <GridEvents TValue="UserReturnView"></GridEvents>
+    <GridEditSettings AllowEditing="true" AllowDeleting="true" AllowAdding="true" Mode="@EditMode.Dialog">
+        <Validator>
+            <DataAnnotationsValidator></DataAnnotationsValidator>
+        </Validator>
+        <HeaderTemplate>
+            @{
+                <HeaderDialog ObjectAddEdit="context"></HeaderDialog>
+            }
+        </HeaderTemplate>
+        <Template>
+            @{
+                var user = context as UserReturnView;
+                <div class="row">
+                    <CustomInputText ID="FirstName" @bind-Value="@(user.FirstName)"
+                    Placeholder="@localResource?["FirstName"]" For="(()=>user.FirstName)" />
+                    <CustomInputText ID="LastName" @bind-Value="@(user.LastName)" Placeholder="@localResource?["LastName"]"
+                    For="(()=>user.LastName)" />
+                </div>
+                <div class="row">
+                    <CustomDDList ID="EditRole" TAdapter="UserRoleAdmAdapter"
+                                        TItem="Role" Tvalue="int"
+                                          @bind-ValueT=@user.RoleId
+                                          Placeholder="@localResource?["Role"]"
+                                          PropTextItem="@nameof(Role.Name)"
+                                          PropValueItem="@nameof(Role.RoleId)"
+                                          For="@(() => @user.RoleId)"
+                                          ShowClearButton=true
+                                          AllowFiltering=true
+                                          CssClass="e-static-clear" />
+                     <CustomInputText ID="EmailAddress" @bind-Value="@(user.EmailAddress)"
+                    Placeholder="@localResource?["EmailAddress"]" For="(()=>user.EmailAddress)" />
+                </div>
+                <div class="row" >
+                    <CustomInputText ID="Password" @bind-Value="@user.Password"
+                                 Placeholder="@localResource?["Password"]" Enable="IsAdd" For="(()=>user.Password)" InputTypeCustom="InputType.Password" />
+
+                    <CustomInputText ID="PasswordConfirm" @bind-Value="@user.PasswordConfirm"
+                                 Placeholder="@localResource?["Password_C"]" Enable="IsAdd" For="(()=>user.PasswordConfirm)" InputTypeCustom="InputType.Password" />
+                </div>
+            }
+        </Template>
+    </GridEditSettings>
+    <GridColumns>
+        <GridColumn Field=@nameof(UserReturnView.Id) IsPrimaryKey="true" IsIdentity="true" Visible="false" />
+        <GridColumn Field=@nameof(UserReturnView.FirstName) HeaderText="@localResource?["FirstName"]" Width="150">
+        </GridColumn>
+        <GridColumn Field=@nameof(UserReturnView.LastName) HeaderText="@localResource?["LastName"]" Width="150">
+        </GridColumn>
+        <GridColumn Field=@nameof(UserReturnView.RoleName) HeaderText="@localResource?["Role"]" Width="150">
+            <FilterTemplate>
+                <SfDropDownList ID="filterRoleCustom" TValue="int" TItem="Role"
+                    Placeholder="@localResource?["Selectec_Role"]" ShowClearButton="true">
+                    <SfDataManager AdaptorInstance="typeof(UserRoleAdmAdapter)" Adaptor="Adaptors.CustomAdaptor">
+                    </SfDataManager>
+                    <DropDownListFieldSettings Text="@nameof(Role.Name)" Value="@nameof(Role.RoleId)" />
+                    <DropDownListEvents TItem="Role" TValue="int" ValueChange="@ValueChangeHandlerCustom" />
+                </SfDropDownList>
+            </FilterTemplate>
+        </GridColumn>
+        <GridColumn Field=@nameof(UserReturnView.EmailAddress) HeaderText="@localResource?["Email"]" Width="150">
+        </GridColumn>
+    </GridColumns>
+</CustomGridAddEditDel>
+
+
+

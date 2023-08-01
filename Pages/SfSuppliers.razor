@@ -1,0 +1,60 @@
+﻿@page "/sfsuppliers"
+@using Syncfusion.Blazor.DropDowns
+@inherits SfSuppliersModel<SuppliersRes>
+@attribute [Authorize]
+<RemoveDialog @ref="@removeDialog" TypeGrid="SuppliersReturnView" Grid="@(SuppliersGrid?.grid)" ShowTemplateContent="false"></RemoveDialog>
+<CustomGridAddEditDel @ref=@SuppliersGrid ID="grid" AllowSorting="true" RemoveReletionDate="RemoveReletionProduct" OnCustomActionBegin="CustomActionBeginSupplier" TValue="SuppliersReturnView">
+    <SfDataManager Headers="@HeaderRemove" AdaptorInstance="typeof(SuppliersAdaptor)" Adaptor="Adaptors.CustomAdaptor"></SfDataManager>
+    <GridEvents TValue="SuppliersReturnView"></GridEvents>
+    <GridEditSettings AllowEditing="true" AllowDeleting="true" AllowAdding="true" Mode="@EditMode.Dialog">
+        <Validator>
+            <DataAnnotationsValidator></DataAnnotationsValidator>
+        </Validator>
+        <HeaderTemplate>
+            @{
+                <HeaderDialog ObjectAddEdit="context"></HeaderDialog>
+            }
+        </HeaderTemplate>
+        <Template>
+            @{
+                var supplier = context as SuppliersReturnView;
+                <div>
+                    <div class="row">
+                        <CustomInputText ID="CompanyName" Tvalue="string" Placeholder="@localResource?["CompanyName"]" @bind-Value="@supplier.CompanyName" For="@(()=>@supplier.CompanyName)" />
+                        <CustomInputText ID="ContactName" Tvalue="string" Placeholder="@localResource?["ContactName"]" @bind-Value="@supplier.ContactName" />
+                    </div>
+                    <div class="row">
+                        <CustomInputText ID="ContactTitle" Tvalue="string" Placeholder="@localResource?["ContactTitle"]" @bind-Value="@supplier.ContactTitle" />
+                        <CustomInputText ID="Address" Tvalue="string" Placeholder="@localResource?["Address"]" @bind-Value="@supplier.Address" />
+                    </div>
+                </div>
+                <CountryCityPostCode @ref="@ddlCityPostCode" T="SuppliersReturnView" ParamToRenderFragment="@supplier"
+                                     @bind-ValueCountry="@supplier.CountryCode"
+                                     @bind-ValueCity="@supplier.City"
+                                     @bind-ValuePostalCode="@supplier.PostalCode"
+                              >
+                    <RenderFragment Context="ord">
+                        <CustomInputText ID="Region" Tvalue="string" Placeholder="@localResource?["Region"]" @bind-Value="@ord.Region" />
+                    </RenderFragment>
+                </CountryCityPostCode>
+                <div class="row">
+                    <CustomInputText ID="Phone" Tvalue="string" Placeholder="@localResource?["Phone"]" @bind-Value="@supplier.Phone" />
+                    <CustomInputText ID="HomePage" Tvalue="string" Placeholder="@localResource?["HomePage"]" @bind-Value="@supplier.HomePage" />
+                </div>
+            }
+        </Template>
+    </GridEditSettings>
+    <GridColumns>
+        <GridColumn Field=@nameof(SuppliersReturnView.Id) IsPrimaryKey="true" IsIdentity="true" Visible="false" />
+        <GridColumn Field=@nameof(SuppliersReturnView.CompanyName) HeaderText="@localResource?["CompanyName"]" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(SuppliersReturnView.ContactName) HeaderText="@localResource?["ContactName"]" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(SuppliersReturnView.ContactTitle) HeaderText="@localResource?["ContactTitle"]" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(SuppliersReturnView.Address) HeaderText="@localResource?["Address"]" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(SuppliersReturnView.Country) HeaderText="@localResource?["Country"]" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(SuppliersReturnView.City) HeaderText="@localResource?["City"]" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(SuppliersReturnView.PostalCode) HeaderText="@localResource?["PostalCode"]" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(SuppliersReturnView.Region) HeaderText="@localResource?["Region"]" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(SuppliersReturnView.Phone) HeaderText="@localResource?["Phone"]" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(SuppliersReturnView.HomePage) HeaderText="@localResource?["HomePage"]" Width="150"></GridColumn>
+    </GridColumns>
+</CustomGridAddEditDel>

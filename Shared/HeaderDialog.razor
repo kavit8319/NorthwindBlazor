@@ -1,0 +1,33 @@
+﻿@inherits BaseComponentModel<GlobalResource>
+@{
+    if (@AddEdit)
+    {
+        <span>@GlobalStringLocalizer["Edit"] </span>
+        <span>@AdditionalInfo</span>
+    }
+    else
+    {
+        <span>@GlobalStringLocalizer["Add"]</span>
+        <span>@AdditionalInfo</span>
+    }
+}
+@code {
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        if (ObjectAddEdit != null)
+        {
+            var id = (int?)ObjectAddEdit.GetType().GetProperty("Id").GetValue(ObjectAddEdit);
+            AddEdit =id.HasValue&&id>0?true:(id > 0);
+        }
+    }
+
+    [Parameter]
+    public Object ObjectAddEdit { get; set; }
+
+    protected bool AddEdit { get; set; }
+
+    [Parameter]
+    public string AdditionalInfo { get; set; }
+
+}

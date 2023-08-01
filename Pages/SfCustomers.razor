@@ -1,0 +1,80 @@
+﻿@page "/sfcustomers"
+@using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.Buttons
+@inherits SfCustomersModel<CustomersRes>
+@attribute [Authorize]
+<CustomGridAddEditDel @ref=@customerGrid ID="grid" AllowSorting="true" OnCustomActionBegin="CustomActionBeginCustomer" TValue="CustomerReturnView">
+    <SfDataManager AdaptorInstance="typeof(CustomersAdapter)" Adaptor="Adaptors.CustomAdaptor"></SfDataManager>
+    <GridEvents TValue="CustomerReturnView"></GridEvents>
+    <GridEditSettings Dialog=@dialogSettings AllowEditing="true" AllowDeleting="true" AllowAdding="true" Mode="@EditMode.Dialog">
+        <Validator>
+            <DataAnnotationsValidator></DataAnnotationsValidator>
+        </Validator>
+        <HeaderTemplate>
+            @{
+                <HeaderDialog ObjectAddEdit="context"></HeaderDialog>
+            }
+        </HeaderTemplate>
+        <Template>
+            @{
+                var customer = context as CustomerReturnView;
+                <div>
+                    <div class="row">
+                        <CustomInputText ID="CompanyName" Tvalue="string" Placeholder="@localResource?["CompanyName"]" @bind-Value="@customer.CompanyName" For="@(()=>@customer.CompanyName)" />
+                        <CustomInputText ID="ContactName" Tvalue="string" Placeholder="@localResource?["ContactName"]" @bind-Value="@customer.ContactName" For="@(()=>@customer.ContactName)" />
+                    </div>
+
+                    <div class="row">
+                        <CustomDDList ID="CustomerTitleId" TAdapter="CustomerTitleAdaptor" TItem="TitleReturn" Tvalue="int?"
+                                      @bind-ValueT=@customer.CustomerTitleId
+                                  Placeholder="@localResource?["Customer_SelectTitle"]"
+                                  PropTextItem="@nameof(TitleReturn.Name)"
+                                  PropValueItem="@nameof(TitleReturn.Id)"
+                                  For="@(() => @customer.CustomerTitleId)"
+                                  ShowClearButton=true
+                                  AllowFiltering=true
+                                  CssClass="e-static-clear" />
+                        <CustomInputText ID="Address" Tvalue="string" Placeholder="@localResource?["Address"]" @bind-Value="@customer.Address" For="@(()=>@customer.Address)" />
+                    </div>
+                    <CountryCityPostCode @ref="@customerCountryCityPostCode" T="CustomerReturnView"
+                                     ParamToRenderFragment="@customer"
+                                         @bind-ValueCountry="@customer.Country"
+                                         ForCountry="@(()=>@customer.Country)"
+                                         ForCity="@(()=>@customer.City)"
+                                         ForPostCode="@(()=>@customer.PostalCode)"
+                                         @bind-ValueCity="@customer.City"
+                                         @bind-ValuePostalCode="@customer.PostalCode">
+                        <RenderFragment Context="cust">
+                            <CustomInputText ID="Phone" Tvalue="string" Placeholder="@localResource?["Phone"]" @bind-Value="@cust.Phone" />
+                        </RenderFragment>
+                    </CountryCityPostCode>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <SfCheckBox @bind-Checked="@customer.IsVip" Label="Is Vip" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </Template>
+    </GridEditSettings>
+    <GridColumns>
+        <GridColumn Field=@nameof(CustomerReturnView.Id) IsPrimaryKey="true" IsIdentity="true" Visible="false" />
+        <GridColumn Field=@nameof(CustomerReturnView.CompanyName) HeaderText="@localResource?["CompanyName"]" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(CustomerReturnView.ContactName) HeaderText="@localResource?["ContactName"]" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(CustomerReturnView.CustomerTitle) HeaderText="@localResource?["CustomerTitle"]" Width="150">
+            <FilterTemplate>
+                <SfDropDownList ID="filterCustomerTitle" TValue="int" TItem="TitleReturn" Placeholder="@localResource?["Selectec_CustomerTitle"]" ShowClearButton="true">
+                    <SfDataManager AdaptorInstance="typeof(CustomerTitleAdaptor)" Adaptor="Adaptors.CustomAdaptor"></SfDataManager>
+                    <DropDownListFieldSettings Text="@nameof(TitleReturn.Name)" Value="@nameof(TitleReturn.Id)" />
+                    <DropDownListEvents TItem="TitleReturn" TValue="int" ValueChange="@ValueChangeHandlerCustom" />
+                </SfDropDownList>
+            </FilterTemplate>
+        </GridColumn>
+        <GridColumn Field=@nameof(CustomerReturnView.Address) HeaderText="@localResource?["Address"]" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(CustomerReturnView.Country) HeaderText="@localResource?["Country"]" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(CustomerReturnView.City) HeaderText="@localResource?["City"]" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(CustomerReturnView.PostalCode) HeaderText="@localResource?["PostalCode"]" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(CustomerReturnView.Phone) HeaderText="@localResource?["Phone"]" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(CustomerReturnView.IsVip) HeaderText="@localResource?["IsVip"]" DisplayAsCheckBox="true" Type="ColumnType.Boolean" Width="150"></GridColumn>
+    </GridColumns>
+</CustomGridAddEditDel>

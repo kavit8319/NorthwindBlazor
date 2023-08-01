@@ -1,0 +1,48 @@
+﻿@page "/login"
+@page "/login/{code?}"
+@inherits LoginModel<LoginRes>
+@attribute [AllowAnonymous]
+@using Northwind.Interface.Server.Pages.LoginPages.reCaptcha
+
+<EditForm Model="@UserLogone" OnValidSubmit="SubmitAsync">
+    <DataAnnotationsValidator />
+    <div class="input-group">
+        <SfTextBox @bind-Value="@UserLogone.EmailAddress"
+                   class="form-control rounded-start"
+                   Placeholder="@localResource["EmailAddress"]"
+                   Type="InputType.Email"
+                   FloatLabelType="FloatLabelType.Auto" ID="emailAddress" />
+        <ValidationMessage For="(() => UserLogone.EmailAddress)" />
+    </div>
+    <div class="input-group d-flex">
+        <SfTextBox @bind-Value="@UserLogone.Password"
+                   class="form-control rounded-end"
+                   Placeholder="@localResource["Password"]"
+                   Type="InputType.Password"
+                   FloatLabelType="FloatLabelType.Auto"
+                   ID="Password" />
+        <ValidationMessage For="(() => UserLogone.Password)" />
+    </div>
+    <br />
+    <Captcha CaptchaSuccessful="SuccsessfullCaptcha" @ref="@captcha"/>
+    <br />
+    <div class="input-group">
+        <SfProgressButton @ref=@sfButon Disabled="@(!EnableLoginCaptcha)" Content="@localResource["Sign_in"]" Duration="500" CssClass="form-control btn btn-primary rounded px-3" />
+    </div>
+    <br />
+    @*<div class="input-group d-md-flex">
+        <div class="w-100">
+            <SfCheckBox Label="@localResource["RememberMe"]" @bind-Checked="@UserLogone.RememberMe"
+                       
+                        LabelPosition="Syncfusion.Blazor.Buttons.LabelPosition.After" />
+        </div>
+    </div>*@
+    <div class="input-group d-md-flex">
+        <div class="w-50">
+            <a href="/fogotPassword">@localResource["FogotPassword"]</a>
+        </div>    
+        <div class="w-50 text-md-end">
+            <a href="/signup" class="col-3">@localResource["Sign_up"]</a>
+        </div>
+    </div>
+</EditForm>

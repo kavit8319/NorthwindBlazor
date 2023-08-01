@@ -1,0 +1,242 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\user\\Downloads\\Publish\\Northwind.Interface.Server\\Northwind.Interface.Server.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\user\\Downloads\\Publish\\CustomInputControl\\CustomInputControl.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\user\\Downloads\\Publish\\CustomInputControl\\CustomInputControl.csproj",
+        "projectName": "CustomInputControl",
+        "projectPath": "C:\\Users\\user\\Downloads\\Publish\\CustomInputControl\\CustomInputControl.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\Downloads\\Publish\\CustomInputControl\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Components.Web": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Syncfusion.Blazor.Calendars": {
+              "target": "Package",
+              "version": "[21.1.38, )"
+            },
+            "Syncfusion.Blazor.DropDowns": {
+              "target": "Package",
+              "version": "[21.1.38, )"
+            },
+            "Syncfusion.Blazor.Inputs": {
+              "target": "Package",
+              "version": "[21.1.38, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\user\\Downloads\\Publish\\Northwind.Interface.Server\\Northwind.Interface.Server.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\user\\Downloads\\Publish\\Northwind.Interface.Server\\Northwind.Interface.Server.csproj",
+        "projectName": "Northwind.Interface.Server",
+        "projectPath": "C:\\Users\\user\\Downloads\\Publish\\Northwind.Interface.Server\\Northwind.Interface.Server.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\Downloads\\Publish\\Northwind.Interface.Server\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\user\\Downloads\\Publish\\CustomInputControl\\CustomInputControl.csproj": {
+                "projectPath": "C:\\Users\\user\\Downloads\\Publish\\CustomInputControl\\CustomInputControl.csproj"
+              },
+              "C:\\Users\\user\\Downloads\\Publish\\Northwind.Interface.Shared\\Northwind.Interface.Shared.csproj": {
+                "projectPath": "C:\\Users\\user\\Downloads\\Publish\\Northwind.Interface.Shared\\Northwind.Interface.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "Blazor.LocalStorage": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.Extensions.Caching.Memory": {
+              "target": "Package",
+              "version": "[8.0.0-preview.2.23128.3, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "Syncfusion.Blazor.Cards": {
+              "target": "Package",
+              "version": "[21.1.38, )"
+            },
+            "Syncfusion.Blazor.Notifications": {
+              "target": "Package",
+              "version": "[21.1.38, )"
+            },
+            "Syncfusion.Blazor.TreeGrid": {
+              "target": "Package",
+              "version": "[21.1.38, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[8.0.0-preview.2.23128.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\user\\Downloads\\Publish\\Northwind.Interface.Shared\\Northwind.Interface.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\user\\Downloads\\Publish\\Northwind.Interface.Shared\\Northwind.Interface.Shared.csproj",
+        "projectName": "Northwind.Interface.Shared",
+        "projectPath": "C:\\Users\\user\\Downloads\\Publish\\Northwind.Interface.Shared\\Northwind.Interface.Shared.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\Downloads\\Publish\\Northwind.Interface.Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Components.Web": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+﻿@using System.Globalization
+@using Syncfusion.Blazor.DropDowns
+@inherits CultureSelectorModel
+<div style="padding-left:20px">
+    <SfDropDownList @ref="@dd" TItem="CultureInfo" @bind-Value=@PropValue Width="200" PopupWidth="200" TValue="string" DataSource="suportedCultures" CssClass="localization-combo">
+        <DropDownListTemplates TItem="CultureInfo">
+            <ItemTemplate>
+                @{
+                    var culture = context as CultureInfo;
+                    <span>@($"{char.ToUpper(@culture.DisplayName[0])}{@culture.DisplayName.Substring(1)}")</span>
+                }
+            </ItemTemplate>
+            <ValueTemplate>
+                @{
+                    var culture = context as CultureInfo;
+                    <div class="destination">@($"{char.ToUpper(@culture.DisplayName[0])}{@culture.DisplayName.Substring(1)}")</div>
+                }
+            </ValueTemplate>
+        </DropDownListTemplates>
+        <DropDownListFieldSettings Text="@nameof(CultureInfo.DisplayName)" Value="@nameof(CultureInfo.Name)" />
+        <DropDownListEvents TValue="string" TItem="CultureInfo" OnValueSelect="CultureChanged" />
+    </SfDropDownList>
+</div>

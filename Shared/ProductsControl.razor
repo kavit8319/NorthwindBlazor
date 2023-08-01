@@ -1,0 +1,145 @@
+﻿@inherits ProductsControlModel<ProductsRes>
+@using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.Buttons
+<CustomGridAddEditDel @ref="@productGrid" ID="grid" AllowSorting="true" QueryParam="queryProducts" AllowSelection="true" OnCustomRowSelecting="CustomRowSelecting" OnCustomActionBegin="OnActionBegin" TValue="ProductReturnView">
+
+    <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Menu" />
+    <SfDataManager AdaptorInstance="typeof(ProductsAdaprtor)" Adaptor="Adaptors.CustomAdaptor" />
+
+    <GridEditSettings AllowEditing="true" AllowDeleting="true" AllowAdding="true" Mode="@EditMode.Dialog">
+        <Validator>
+            <DataAnnotationsValidator></DataAnnotationsValidator>
+        </Validator>
+        <HeaderTemplate>
+            @{
+                <HeaderDialog ObjectAddEdit="context"></HeaderDialog>
+            }
+        </HeaderTemplate>
+        <Template>
+            @{
+                var product = context as ProductReturnView;
+                <div class="row">
+                     <CustomInputText ID="ProductName" Tvalue="string" Placeholder="@localResource?["ProductName"]" For="@(() => product.ProductName)" @bind-Value="@product.ProductName" />
+
+                     <CustomDDList ID="Category"
+                                                     TAdapter="CategoryAdaptor"
+                                                     TItem="CategoryReturnView" Tvalue="int?"
+                                                         @bind-ValueT="@product.CategoryId"
+                                                     Placeholder="@localResource?["CategoryName"]"
+                                                     PropTextItem="@nameof(CategoryReturnView.CategoryName)"
+                                                     PropValueItem="@nameof(CategoryReturnView.Id)"
+                                                     For="@(() => product.CategoryId)"
+                                                     ShowClearButton=true
+                                                     AllowFiltering=true
+                                                    
+                                                     CssClass="e-static-clear" />
+                </div>
+                <div class="row">
+                    <CustomDDList ID="Supplier"
+                              TAdapter="SuppliersAdaptor"
+                              TItem="SuppliersReturnView" Tvalue="int?"
+                                  @bind-ValueT="@product.SupplierId"
+                              Placeholder="@localResource?["SupCompanyName"]"
+                              PropTextItem="@nameof(SuppliersReturnView.CompanyName)"
+                              PropValueItem="@nameof(SuppliersReturnView.Id)"
+                              For="@(() => @product.SupplierId)"
+                              ShowClearButton=true
+                              AllowFiltering=true
+                             
+                              CssClass="e-static-clear" />
+                
+                    <CustomInputText ID="QuantityPerUnit" @bind-Value=@product.QuantityPerUnit Tvalue="string" Placeholder="@localResource?["QuantityPerUnit"]" />
+                </div>
+                <div class="row">
+                    <CustomNumberInputControl ID="UnitPrice" @bind-ValueT="@product.UnitPrice" Tvalue="decimal?" Placeholder="@localResource?["UnitPrice"]" />
+                    <CustomNumberInputControl ID="UnitsInStock" @bind-ValueT="@product.UnitsInStock" Tvalue="short?" Placeholder="@localResource?["UnitsInStock"]" />
+                </div>
+                <div class="row">
+                    <CustomNumberInputControl ID="UnitsOnOrder" @bind-ValueT="@product.UnitsOnOrder" Tvalue="short?" Placeholder="@localResource?["UnitsOnOrder"]" />
+                    <CustomNumberInputControl ID="ReorderLevel" @bind-ValueT="@product.ReorderLevel" Tvalue="short?" Placeholder="@localResource?["ReorderLevel"]" />
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <SfCheckBox @bind-Checked="@product.Discontinued"  TChecked="bool"
+                         Label="@localResource?["Discontinued"]" LabelPosition="Syncfusion.Blazor.Buttons.LabelPosition.After" />
+                    </div>
+                </div>
+            }
+        </Template>
+    </GridEditSettings>
+    <GridColumns>
+        <GridColumn Field=@nameof(ProductReturnView.Id) IsPrimaryKey="true" IsIdentity="true" Visible="false" />
+        <GridColumn Field=@nameof(ProductReturnView.ProductName) HeaderText="@localResource?["ProductName"]" Width="150">
+            <FilterTemplate>
+                <SfTextBox @bind-Value="@filterProductName"></SfTextBox>
+            </FilterTemplate>
+        </GridColumn>
+
+        <GridColumn Field=@nameof(ProductReturnView.CategoryName) HeaderText="@localResource?["CategoryName"]" Width="150">
+            <FilterTemplate>
+                <SfDropDownList ID="ddlCategory" TValue="string" TItem="CategoryReturnView" @bind-Value="@filterCategory" Placeholder="@localResource?["CategoryName"]" ShowClearButton="true">
+                    <SfDataManager AdaptorInstance="typeof(CategoryAdaptor)" Adaptor="Adaptors.CustomAdaptor"></SfDataManager>
+                    <DropDownListFieldSettings Text="@nameof(CategoryReturnView.CategoryName)" Value="@nameof(CategoryReturnView.IdStr)" />
+                    <DropDownListEvents TItem="CategoryReturnView" TValue="string" />
+                </SfDropDownList>
+            </FilterTemplate>
+        </GridColumn>
+        <GridColumn Field=@nameof(ProductReturnView.SupCompanyName) HeaderText="@localResource?["SupCompanyName"]" Width="150">
+            <FilterTemplate>
+                <SfDropDownList ID="filterSupplier" TValue="string" TItem="SuppliersReturnView" @bind-Value="@filterSupplier" Placeholder="@localResource?["SupCompanyName"]" ShowClearButton="true">
+                    <SfDataManager AdaptorInstance="typeof(SuppliersAdaptor)" Adaptor="Adaptors.CustomAdaptor"></SfDataManager>
+                    <DropDownListFieldSettings Text="@nameof(SuppliersReturnView.CompanyName)" Value="@nameof(SuppliersReturnView.IdStr)" />
+                    <DropDownListEvents TItem="SuppliersReturnView" TValue="string" />
+                </SfDropDownList>
+            </FilterTemplate>
+        </GridColumn>
+        <GridColumn Field=@nameof(ProductReturnView.QuantityPerUnit) HeaderText="@localResource?["QuantityPerUnit"]" Width="150">
+            <FilterTemplate>
+                <SfTextBox @bind-Value="@filterQuantityPerUnit"></SfTextBox>
+            </FilterTemplate>
+        </GridColumn>
+        <GridColumn Field=@nameof(ProductReturnView.UnitPrice) HeaderText="@localResource?["UnitPrice"]" Width="150">
+            <FilterTemplate>
+                <SfNumericTextBox @bind-Value="@filterUnitPrice" Decimals="null" TValue="decimal"></SfNumericTextBox>
+            </FilterTemplate>
+        </GridColumn>
+        <GridColumn Field=@nameof(ProductReturnView.UnitsInStock) HeaderText="@localResource?["UnitsInStock"]" Width="150">
+            <FilterTemplate>
+                <SfNumericTextBox @bind-Value="@filterUnitInStock" Decimals="null" TValue="short"></SfNumericTextBox>
+            </FilterTemplate>
+        </GridColumn>
+        <GridColumn Field=@nameof(ProductReturnView.UnitsOnOrder) HeaderText="@localResource?["UnitsOnOrder"]" Width="150">
+            <FilterTemplate>
+                <SfNumericTextBox @bind-Value="@filterUnitsOnOrder" Decimals="null" TValue="short"></SfNumericTextBox>
+            </FilterTemplate>
+        </GridColumn>
+        <GridColumn Field=@nameof(ProductReturnView.ReorderLevel) HeaderText="@localResource?["ReorderLevel"]" Width="150">
+            <FilterTemplate>
+                <SfNumericTextBox @bind-Value="@filterReorderLevel" Decimals="null" TValue="short"></SfNumericTextBox>
+            </FilterTemplate>
+        </GridColumn>
+        <GridColumn Field=@nameof(ProductReturnView.Discontinued) DisplayAsCheckBox="true" Type="ColumnType.Boolean" HeaderText="@localResource?["Discontinued"]" Width="150">
+            <FilterTemplate>
+                <SfCheckBox @bind-Checked="@filterDiscontinue" EnableTriState="false" Label="@localResource?["Discontinued"]" TChecked="bool" />
+            </FilterTemplate>
+        </GridColumn>
+    </GridColumns>
+</CustomGridAddEditDel>
+
+@if (!@ShowPageSize)
+{
+    <style>
+        div#grid .e-pager .e-pagerdropdown {
+            display: none;
+        }
+
+        div#grid .e-pager .e-pagerconstant {
+            display: none;
+        }
+
+        div#grid_toolbarItems {
+            display: none;
+        }
+    </style>
+}
+

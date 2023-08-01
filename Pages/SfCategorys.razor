@@ -1,0 +1,90 @@
+﻿@page "/sfcategorys"
+@inherits SfCategorysModel<CategoryRes>
+@attribute [Authorize]
+<RemoveDialog @ref="@removeDialog" TypeGrid="CategoryReturnView" Grid="@(categoryGrid?.grid)" ShowTemplateContent="false"></RemoveDialog>
+<CustomGridAddEditDel @ref="@categoryGrid" ID="grid" RemoveReletionDate="RemoveReletionProduct" AllowSorting="true" OnCustomActionBegin="OnActionBeginCustomer" TValue="CategoryReturnView">
+    <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Menu"></GridFilterSettings>
+    <SfDataManager Headers="@HeaderRemove" AdaptorInstance="typeof(CategoryAdaptor)" Adaptor="Adaptors.CustomAdaptor"></SfDataManager>
+    <GridEvents TValue="CategoryReturnView"></GridEvents>
+    <GridEditSettings AllowEditing="true" AllowDeleting="true" AllowAdding="true" Mode="@EditMode.Dialog">
+        <Validator>
+            <DataAnnotationsValidator></DataAnnotationsValidator>
+        </Validator>
+        <HeaderTemplate>
+            @{
+                <HeaderDialog ObjectAddEdit="context"></HeaderDialog>
+            }
+        </HeaderTemplate>
+        <Template>
+            @{
+                var category = context as CategoryReturnView;
+                <div class="row">
+                    <CustomInputText ID="CategoryName" Tvalue="string" Placeholder="@localResource?["CategoryName"]" @bind-Value="@category.CategoryName" For="@(()=>@category.CategoryName)" />
+                    <CustomInputText ID="Description" Tvalue="string" Placeholder="@localResource?["Description"]" @bind-Value="@category.Description" />
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                       
+                        @if (category.Id>0&& category.Picture != null && category.Picture.Length > 0)
+                        {
+                            @if (IsFileRemoveEnable)
+                            {
+                                string str = "data:image/png;base64," + Convert.ToBase64String(category.Picture, category.Id <= 7 && category.Id != 0 ? 78 : 0, category.Id <= 8 && category.Id != 0 ? category.Picture.Length - 78 : category.Picture.Length);
+                                <img src="@str" id="image" class="imagePreview" alt="@category.CategoryName" />
+                                <button type="button" class="btn btn-warning" @onclick="((el)=>RemoveImage(el,category))">@localResource?["Remove"]</button>
+                            }
+                        }
+                        <SfUploader @ref="uploader">
+                            <UploaderEvents ValueChange="@((args)=>onChange(args, category))"></UploaderEvents>
+                            <UploaderTemplates>
+                                <Template Context="imageCont">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <img src="@(files.Count >0 ? files.FirstOrDefault()?.Path : string.Empty)" class="imagePreview" />
+                                            </td>
+                                            <td>
+                                                <div style="padding: 7px;">
+                                                    <h5 title="@(imageCont.Name)">@(category.CategoryName)</h5>
+                                                    <i>@(imageCont.Size) Bytes</i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <span class="e-icons e-file-remove-btn remove" id="removeIcon" @onclick="((el)=>RemoveImage(el,category))" title="@localResource?["Remove"]"></span>
+                                </Template>
+                            </UploaderTemplates>
+                        </SfUploader>
+                    </div>
+                </div>
+            }
+        </Template>
+    </GridEditSettings>
+    <GridColumns>
+        <GridColumn Field=@nameof(CategoryReturnView.Id) IsPrimaryKey="true" IsIdentity="true" Visible="false"></GridColumn>
+        <GridColumn Field=@nameof(CategoryReturnView.CategoryName) HeaderText="@localResource?["CategoryName"]" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(CategoryReturnView.Description) HeaderText="@localResource?["Description"]" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(CategoryReturnView.Picture) HeaderText="@localResource?["Picture"]" Width="150" AllowFiltering=false>
+            <Template>
+                @{
+                    var categoryReturn = (context as CategoryReturnView);
+                    if (categoryReturn.Picture != null && categoryReturn.Picture.Length > 0)
+                    {
+                        var imageSrc = "data:image/png;base64," + Convert.ToBase64String(categoryReturn.Picture, categoryReturn.Id <= 7 ? 78 : 0, categoryReturn.Id <= 8 ? categoryReturn.Picture.Length - 78 : categoryReturn.Picture.Length);
+                        <div class="e-image">
+                            <img src="@imageSrc" height="25" width="25" />
+                        </div>
+                    }
+                }
+            </Template>
+        </GridColumn>
+    </GridColumns>
+</CustomGridAddEditDel>
+
+<style>
+    .imagePreview {
+        width: 150px;
+        height: 100px;
+    }
+</style>

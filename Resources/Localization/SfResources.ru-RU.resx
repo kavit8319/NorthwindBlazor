@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Grid_Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="Grid_AddFormTitle" xml:space="preserve">
+    <value>Добавить новую запись</value>
+  </data>
+  <data name="Grid_AND" xml:space="preserve">
+    <value>И</value>
+  </data>
+  <data name="Grid_AutoFit" xml:space="preserve">
+    <value>Автоподбор этого столбца</value>
+  </data>
+  <data name="Grid_AutoFitAll" xml:space="preserve">
+    <value>Автоподбор всех столбцов</value>
+  </data>
+  <data name="Grid_BatchSaveConfirm" xml:space="preserve">
+    <value>Вы уверены, что хотите сохранить изменения?</value>
+  </data>
+  <data name="Grid_BatchSaveLostChanges" xml:space="preserve">
+    <value>Несохраненные изменения будут потеряны. Вы уверены что хотите продолжить?</value>
+  </data>
+  <data name="Grid_Between" xml:space="preserve">
+    <value>Между</value>
+  </data>
+  <data name="Grid_Blanks" xml:space="preserve">
+    <value>Бланки</value>
+  </data>
+  <data name="Grid_Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Grid_CancelButton" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Grid_CancelEdit" xml:space="preserve">
+    <value>Вы уверены, что хотите отменить изменения?</value>
+  </data>
+  <data name="Grid_ChooseColumns" xml:space="preserve">
+    <value>Выберите столбец</value>
+  </data>
+  <data name="Grid_ChooseDate" xml:space="preserve">
+    <value>Выберите дату</value>
+  </data>
+  <data name="Grid_ClearButton" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="Grid_ClearFilter" xml:space="preserve">
+    <value>Очистить фильтр</value>
+  </data>
+  <data name="Grid_Columnchooser" xml:space="preserve">
+    <value>Колонки</value>
+  </data>
+  <data name="Grid_ConfirmDelete" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить запись?</value>
+  </data>
+  <data name="Grid_Contains" xml:space="preserve">
+    <value>Содержит</value>
+  </data>
+  <data name="Grid_Copy" xml:space="preserve">
+    <value>Копировать</value>
+  </data>
+  <data name="Grid_Csvexport" xml:space="preserve">
+    <value>CSV Export</value>
+  </data>
+  <data name="Grid_CustomFilter" xml:space="preserve">
+    <value>Выбор фильтра</value>
+  </data>
+  <data name="Grid_CustomFilterDatePlaceHolder" xml:space="preserve">
+    <value>Выбор даты</value>
+  </data>
+  <data name="Grid_CustomFilterPlaceHolder" xml:space="preserve">
+    <value>Введите значение</value>
+  </data>
+  <data name="Grid_DateFilter" xml:space="preserve">
+    <value>Фильтры даты</value>
+  </data>
+  <data name="Grid_DateTimeFilter" xml:space="preserve">
+    <value>Фильтры даты и времени</value>
+  </data>
+  <data name="Grid_Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Grid_DeleteOperationAlert" xml:space="preserve">
+    <value>Не выбраны записи для операции удаления</value>
+  </data>
+  <data name="Grid_DeleteRecord" xml:space="preserve">
+    <value>Удалить запись</value>
+  </data>
+  <data name="Grid_Edit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="Grid_EditFormTitle" xml:space="preserve">
+    <value>Детали</value>
+  </data>
+  <data name="Grid_EditOperationAlert" xml:space="preserve">
+    <value>Нет записей, выбранных для операции редактирования</value>
+  </data>
+  <data name="Grid_EditRecord" xml:space="preserve">
+    <value>Редактировать запись</value>
+  </data>
+  <data name="Grid_EmptyDataSourceError" xml:space="preserve">
+    <value>DataSource не должен быть пустым при начальной загрузке, так как столбцы генерируются из dataSource в AutoGenerate Column Grid.</value>
+  </data>
+  <data name="Grid_EmptyRecord" xml:space="preserve">
+    <value>Нет записей для отображения</value>
+  </data>
+  <data name="Grid_EndsWith" xml:space="preserve">
+    <value>Заканчивается с</value>
+  </data>
+  <data name="Grid_EnterValue" xml:space="preserve">
+    <value>Введите значение</value>
+  </data>
+  <data name="Grid_Equal" xml:space="preserve">
+    <value>Равный</value>
+  </data>
+  <data name="Grid_Excelexport" xml:space="preserve">
+    <value>Экспорт в Excel</value>
+  </data>
+  <data name="Grid_Export" xml:space="preserve">
+    <value>Экспорт</value>
+  </data>
+  <data name="Grid_False" xml:space="preserve">
+    <value>лож</value>
+  </data>
+  <data name="Grid_FilterbarTitle" xml:space="preserve">
+    <value>ячейка панели фильтров</value>
+  </data>
+  <data name="Grid_FilterButton" xml:space="preserve">
+    <value>Фильтр</value>
+  </data>
+  <data name="Grid_FilterFalse" xml:space="preserve">
+    <value>Лож</value>
+  </data>
+  <data name="Grid_FilterMenu" xml:space="preserve">
+    <value>Фильтр</value>
+  </data>
+  <data name="Grid_FilterTrue" xml:space="preserve">
+    <value>Истинный</value>
+  </data>
+  <data name="Grid_FirstPage" xml:space="preserve">
+    <value>Первая страница</value>
+  </data>
+  <data name="Grid_GreaterThan" xml:space="preserve">
+    <value>Больше чем</value>
+  </data>
+  <data name="Grid_GreaterThanOrEqual" xml:space="preserve">
+    <value>Больше или равно</value>
+  </data>
+  <data name="Grid_Group" xml:space="preserve">
+    <value>Сгруппировать по этому столбцу</value>
+  </data>
+  <data name="Grid_GroupDisable" xml:space="preserve">
+    <value>Группировка отключена для этого столбца</value>
+  </data>
+  <data name="Grid_GroupDropArea" xml:space="preserve">
+    <value>Перетащите заголовок столбца сюда, чтобы сгруппировать его столбец</value>
+  </data>
+  <data name="Grid_InvalidFilterMessage" xml:space="preserve">
+    <value>Неверные данные фильтра</value>
+  </data>
+  <data name="Grid_Item" xml:space="preserve">
+    <value>пункт</value>
+  </data>
+  <data name="Grid_Items" xml:space="preserve">
+    <value>пункты</value>
+  </data>
+  <data name="Grid_LastPage" xml:space="preserve">
+    <value>Последняя страница</value>
+  </data>
+  <data name="Grid_LessThan" xml:space="preserve">
+    <value>Меньше, чем</value>
+  </data>
+  <data name="Grid_LessThanOrEqual" xml:space="preserve">
+    <value>Меньше или равно</value>
+  </data>
+  <data name="Grid_MatchCase" xml:space="preserve">
+    <value>Учитывать регистр</value>
+  </data>
+  <data name="Grid_Matchs" xml:space="preserve">
+    <value>Ничего не найдено</value>
+  </data>
+  <data name="Grid_NextPage" xml:space="preserve">
+    <value>Следующая Страница</value>
+  </data>
+  <data name="Grid_NoResult" xml:space="preserve">
+    <value>Ничего не найдено</value>
+  </data>
+  <data name="Grid_NotEqual" xml:space="preserve">
+    <value>Не равный</value>
+  </data>
+  <data name="Grid_NumberFilter" xml:space="preserve">
+    <value>Числовые фильтры</value>
+  </data>
+  <data name="Grid_OKButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Grid_OR" xml:space="preserve">
+    <value>ИЛИ</value>
+  </data>
+  <data name="Grid_Pdfexport" xml:space="preserve">
+    <value>Экспорт в PDF</value>
+  </data>
+  <data name="Grid_PreviousPage" xml:space="preserve">
+    <value>Предыдущая страница</value>
+  </data>
+  <data name="Grid_Print" xml:space="preserve">
+    <value>Печать</value>
+  </data>
+  <data name="Grid_Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Grid_SaveButton" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Grid_Search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="Grid_SearchColumns" xml:space="preserve">
+    <value>поиск по колонкам</value>
+  </data>
+  <data name="Grid_SelectAll" xml:space="preserve">
+    <value>Выбрать все</value>
+  </data>
+  <data name="Grid_ShowRowsWhere" xml:space="preserve">
+    <value>Показать строки, где:</value>
+  </data>
+  <data name="Grid_SortAscending" xml:space="preserve">
+    <value>Сортировать по возрастанию</value>
+  </data>
+  <data name="Grid_SortDescending" xml:space="preserve">
+    <value>Сортировать по убыванию</value>
+  </data>
+  <data name="Grid_StartsWith" xml:space="preserve">
+    <value>Начинается с</value>
+  </data>
+  <data name="Grid_TextFilter" xml:space="preserve">
+    <value>Текстовые фильтры</value>
+  </data>
+  <data name="Grid_True" xml:space="preserve">
+    <value>истина</value>
+  </data>
+  <data name="Grid_Ungroup" xml:space="preserve">
+    <value>Разгруппировать по этому столбцу</value>
+  </data>
+  <data name="Grid_UnGroupButton" xml:space="preserve">
+    <value>Нажмите здесь, чтобы разгруппировать</value>
+  </data>
+  <data name="Grid_Update" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="Grid_Wordexport" xml:space="preserve">
+    <value>Экспорт в Word</value>
+  </data>
+  <data name="Pager_All" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="Pager_CurrentPageInfo" xml:space="preserve">
+    <value>{0} из {1} страниц</value>
+  </data>
+  <data name="Pager_FirstPageTooltip" xml:space="preserve">
+    <value>Перейти на первую страницу</value>
+  </data>
+  <data name="Pager_LastPageTooltip" xml:space="preserve">
+    <value>Перейти на последнюю страницу</value>
+  </data>
+  <data name="Pager_NextPagerTooltip" xml:space="preserve">
+    <value>Перейти на следующую страницу</value>
+  </data>
+  <data name="Pager_NextPageTooltip" xml:space="preserve">
+    <value>Перейти на следующую страницу</value>
+  </data>
+  <data name="Pager_PagerAllDropDown" xml:space="preserve">
+    <value>Все записи</value>
+  </data>
+  <data name="Pager_PagerDropDown" xml:space="preserve">
+    <value>Записей на странице</value>
+  </data>
+  <data name="Pager_PreviousPagerTooltip" xml:space="preserve">
+    <value>Перейти на предыдущую страницу</value>
+  </data>
+  <data name="Pager_PreviousPageTooltip" xml:space="preserve">
+    <value>Перейти на предыдущую страницу</value>
+  </data>
+  <data name="Pager_TotalItemsInfo" xml:space="preserve">
+    <value>({0} записей)</value>
+  </data>
+  <data name="Dialog_Close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+</root>

@@ -1,0 +1,281 @@
+﻿@page "/sforders"
+@inherits SfOrdersModel<OrderRes>
+@attribute [Authorize]
+@using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.Calendars
+@using Syncfusion.Blazor.Popups
+@using Syncfusion.Blazor.Buttons
+
+<CustomGridAddEditDel @ref="@orderGrid" ID="gridOrders" AllowResizing="true" AllowTextWrap="true"
+                      OnCustomDetailExpanded="OrderExpanded" OnCustomRowSelecting="OnRecordClick" AllowSorting="true"
+                      AllowSelection="true" AllowFiltering="true" OnCustomActionBegin="OnActionBegin" TValue="OrderReturnView">
+    <ChildContent>
+        <GridTextWrapSettings WrapMode="WrapMode.Content"></GridTextWrapSettings>
+        <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Menu"  />
+       
+        <SfDataManager AdaptorInstance="typeof(OrdersAdaptor)" Adaptor="Adaptors.CustomAdaptor"></SfDataManager>
+       
+        <GridEditSettings AllowEditing="true" AllowDeleting="true" AllowAdding="true" Mode="@EditMode.Dialog"
+                          Dialog="@dialogSettings">
+            <Validator>
+                <DataAnnotationsValidator></DataAnnotationsValidator>
+            </Validator>
+            <HeaderTemplate>
+                @{
+                    <HeaderDialog ObjectAddEdit="context"></HeaderDialog>
+                }
+            </HeaderTemplate>
+            <Template>
+                @{
+                    var order = context as OrderReturnView;
+                    <div class="row">
+                        <CustomDDList ID="Customer" TAdapter="CustomersAdapter" TItem="CustomerReturnView" Tvalue="int?"
+                                      @bind-ValueT=@order.CustomerId Placeholder="@localResource?["Customer"]"
+                                  PropTextItem="@nameof(CustomerReturnView.CompanyName)"
+                                  PropValueItem="@nameof(CustomerReturnView.Id)" For="@(() => @order.CustomerId)"
+                                  AllowFiltering=true />
+                        <CustomDDList ID="Supplier" TAdapter="EmployeesOnlySelAdapter" TItem="EmployeeAllReturnView"
+                                  Tvalue="int?" @bind-ValueT=@order.EmployeeId Placeholder="@localResource?["EmplFullName"]"
+                                  PropTextItem="@nameof(EmployeeAllReturnView.FullName)"
+                                  PropValueItem="@nameof(EmployeeAllReturnView.Id)" For="@(() => @order.EmployeeId)"
+                                  AllowFiltering=true />
+                    </div>
+                    <div class="row">
+                        <CustomInputText ID="ShipName" Tvalue="string" @bind-Value="@order.ShipName"
+                                     For="@(()=>order.ShipName)" Placeholder="@localResource?["ShipName"]" />
+                        <CustomInputText ID="ShipAddress" Tvalue="string" @bind-Value="@order.ShipAddress"
+                                     For="@(()=>order.ShipAddress)" Placeholder="@localResource?["ShipAddress"]" />
+                    </div>
+
+                    <CountryCityPostCode T="OrderReturnView" ParamToRenderFragment="@order"
+                                         @bind-ValueCountry="@order.Country" @bind-ValueCity="@order.City"
+                                         @bind-ValuePostalCode="@order.PostalCode" ForCountry="@(()=>@order.Country)"
+                                     ForCity="@(()=>@order.City)" ForPostCode="@(()=>@order.PostalCode)">
+                        <RenderFragment Context="ord">
+                            <CustomInputDate ID="OrderDate" @bind-ValueT="@(order.OrderDate)" For="@(()=>order.OrderDate)"
+                                         Tvalue="DateTime?" Placeholder="@localResource?["OrderDate"]" />
+
+                        </RenderFragment>
+                    </CountryCityPostCode>
+                    <div class="row">
+                        <CustomDDList ID="shipper" TAdapter="ShipperAdaptor" TItem="ShipperReturnView" Tvalue="int?"
+                                      @bind-ValueT=@order.ShipVia Placeholder="@localResource?["ShipVia"]"
+                                  PropTextItem="@nameof(ShipperReturnView.CompanyName)"
+                                  PropValueItem="@nameof(ShipperReturnView.Id)" For="@(() => @order.ShipVia)"
+                                  AllowFiltering=true />
+
+                        <CustomNumberInputControl ID="Freight" Tvalue="double?" @bind-ValueT="@order.Freight"
+                                              Placeholder="@localResource["Freight"]" For="@(() => order.Freight)" />
+                    </div>
+                    <div class="row">
+                        <CustomInputDate ID="ShippedDate" @bind-ValueT="@(order.ShippedDate)" For="@(()=>order.ShippedDate)"
+                                     Tvalue="DateTime?" Placeholder="@localResource?["ShippedDate"]" />
+                        <CustomInputDate ID="RequiredDate" @bind-ValueT="@(order.RequiredDate)"
+                                     For="@(()=>order.RequiredDate)" Tvalue="DateTime?"
+                                     Placeholder="@localResource?["RequiredDate"]" />
+                    </div>
+                }
+            </Template>
+        </GridEditSettings>
+
+        <GridTemplates>
+            <DetailTemplate>
+                <CustomGridAddEditDel ID="GridTwo" TValue="OrderDetailReturnView" AllowTextWrap="true" AllowResizing=true
+                                      AllowFiltering=false AllowSorting=true @ref="@orderDeteilGrid" QueryParam="@QueryOrderDetail"
+                                      OnCustomRowSelecting="OnRowSelected" OnCustomActionBegin="OnActionBeginProductDetail"
+                                      OnCustomActionComplete="CustomActionCompleteOrderDetail" AllowSelection="true">
+
+                    <ChildContent>
+                        <GridEvents TValue="OrderDetailReturnView"></GridEvents>
+                        <DataManager AdaptorInstance="typeof(OrderDetailAdapter)" @ref="@DmOrderDetail"
+                                     Headers="@header" Adaptor="Adaptors.CustomAdaptor"></DataManager>
+
+                        <GridEditSettings AllowEditing="true" AllowDeleting="true" AllowAdding="true"
+                                          Mode="@EditMode.Dialog" Dialog="@dialogOrderDetailSettings">
+                            <Validator Context="detailContext">
+                                <DataAnnotationsValidator />
+                            </Validator>
+                            <HeaderTemplate Context="deteilContext">
+                                @{
+                                    <HeaderDialog ObjectAddEdit="deteilContext"></HeaderDialog>
+                                }
+                            </HeaderTemplate>
+                            <Template Context="detailContext">
+                                @{
+                                    orderDetail = detailContext as OrderDetailReturnView;
+                                    <div class="row">
+                                        <CustomDDList ID="ProductID" @ref="@ddlProducts" TAdapter="ProductsAdaprtor"
+                                                  TItem="ProductReturnView" Tvalue="int?" @bind-ValueT=@orderDetail.ProductID
+                                                  Placeholder="@localResource?["ProductName"]"
+                                                  PropTextItem="@nameof(ProductReturnView.ProductName)"
+                                                  PropValueItem="@nameof(ProductReturnView.Id)"
+                                                  For="@(() => @orderDetail.ProductID)" OnClose="OnCloseDDListProducts"
+                                                  AllowFiltering=true />
+                                        <div class="col-md-6 ">
+                                            <br>
+                                            <SfButton IsPrimary="true" @onclick="@(async()=>await sfDialog.ShowAsync())"
+                                                  Content=". . ." />
+                                            <label class="form-label">@localResource?["SelectFromListProductName"]</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <CustomNumberInputControl ID="Quantity" Tvalue="int?"
+                                                                  @bind-ValueT="@orderDetail.Quantity" For="@(()=>@orderDetail.Quantity)"
+                                                              Placeholder="@localResource?["Quantity"]" />
+                                        <CustomNumberInputControl ID="UnitPrice" Tvalue="double?"
+                                                                  @bind-ValueT="@orderDetail.UnitPrice" For="@(()=>@orderDetail.UnitPrice)"
+                                                              Placeholder="@localResource?["UnitPrice"]" />
+                                    </div>
+                                    <div class="row">
+                                        <CustomNumberInputControl ID="Discount" Tvalue="double?"
+                                                                  @bind-ValueT="@orderDetail.Discount"
+                                                              Placeholder="@localResource?["Discount"]" />
+                                        <CustomNumberInputControl ID="UnitsInStock" ReadOnly=true Tvalue="int?"
+                                                                  @bind-ValueT="@orderDetail.UnitsInStock"
+                                                              Placeholder="@localResource?["UnitsInStock"]" />
+                                    </div>
+                                }
+                            </Template>
+                        </GridEditSettings>
+                        <GridAggregates>
+                            <GridAggregate>
+                                <GridAggregateColumns>
+                                    <GridAggregateColumn Field=@nameof(OrderDetailReturnView.TotalSumm) Type="AggregateType.Sum">
+                                       
+                                        <FooterTemplate Context="customCont">
+                                            @{
+                                                var aggregate = (customCont as AggregateTemplateContext);
+                                                <div>
+                                                    <p>@localResource["Total"] @aggregate.Sum</p>
+                                                </div>
+                                            }
+                                        </FooterTemplate>
+                                    </GridAggregateColumn>
+                                </GridAggregateColumns>
+                            </GridAggregate>
+                        </GridAggregates>
+                        <GridColumns>
+                            <GridColumn Field="@nameof(OrderDetailReturnView.Id)" IsIdentity="true" IsPrimaryKey="true"
+                                        Visible="false" />
+                            <GridColumn Field="@nameof(OrderDetailReturnView.ProductID)" IsIdentity="true"
+                                        IsPrimaryKey="true" Visible="false" />
+                            <GridColumn Field=@nameof(OrderDetailReturnView.ProductName)
+                                        HeaderText="@localResource?["ProductName"]" />
+                            <GridColumn Field=@nameof(OrderDetailReturnView.Quantity)
+                                        HeaderText="@localResource?["Quantity"]"  TextAlign="TextAlign.Right" />
+                            <GridColumn Field=@nameof(OrderDetailReturnView.UnitPrice)
+                                        HeaderText="@localResource?["UnitPrice"]" TextAlign="TextAlign.Right" />
+                            <GridColumn Field=@nameof(OrderDetailReturnView.Discount)
+                                        HeaderText="@localResource?["Discount"]"  Format="0.0" TextAlign="TextAlign.Right" />
+                            <GridColumn Field="@nameof(OrderDetailReturnView.TotalSumm)" TextAlign="TextAlign.Right"
+                                        HeaderText="@localResource["TotalSumm"]"  />
+                            <GridColumn Field=@nameof(OrderDetailReturnView.UnitsInStock)
+                                        HeaderText="@localResource?["UnitsInStock"]" TextAlign="TextAlign.Right" />
+                        </GridColumns>
+                    </ChildContent>
+                </CustomGridAddEditDel>
+            </DetailTemplate>
+        </GridTemplates>
+        <GridColumns>
+            <GridColumn Field=@nameof(OrderReturnView.Id) IsPrimaryKey="true" IsIdentity="true" Visible="false" />
+            <GridColumn Field=@nameof(OrderReturnView.CompanyName) HeaderText="@localResource?["CompanyName"]"
+                        Width="150">
+                <FilterTemplate>
+                    <SfTextBox @bind-Value="@filterCompanyName"></SfTextBox>
+                </FilterTemplate>
+            </GridColumn>
+            <GridColumn Field=@nameof(OrderReturnView.ContactName) HeaderText="@localResource?["ContactName"]"
+                        Width="150" Type=ColumnType.String>
+                <FilterTemplate >
+                    <SfTextBox @bind-Value="@filterContactName"></SfTextBox>
+                </FilterTemplate>
+            </GridColumn>
+            <GridColumn Field=@nameof(OrderReturnView.EmplFullName) HeaderText="@localResource?["EmplFullName"]"
+                        Width="150">
+                <FilterTemplate>
+                    <SfTextBox @bind-Value="@filterEmplFullName"></SfTextBox>
+                </FilterTemplate>
+            </GridColumn>
+            <GridColumn Field=@nameof(OrderReturnView.Freight) HeaderText="@localResource?["Freight"]" Width="150">
+                <FilterTemplate>
+                    <SfNumericTextBox @bind-Value="@filterFreight" TValue="double?"></SfNumericTextBox>
+                </FilterTemplate>
+            </GridColumn>
+            <GridColumn Field=@nameof(OrderReturnView.ShipName) HeaderText="@localResource?["ShipName"]" Width="130">
+                <FilterTemplate>
+                    <SfTextBox @bind-Value="@filterShipName"></SfTextBox>
+                </FilterTemplate>
+            </GridColumn>
+            <GridColumn Field=@nameof(OrderReturnView.ShipAddress) HeaderText="@localResource?["ShipAddress"]"
+                        Width="130">
+                <FilterTemplate>
+                    <SfTextBox @bind-Value="@filterShipAddress"></SfTextBox>
+                </FilterTemplate>
+            </GridColumn>
+            <GridColumn Field=@nameof(OrderReturnView.Country) HeaderText="@localResource?["ShipCountry"]" Width="130">
+                <FilterTemplate>
+                    <SfTextBox @bind-Value="@filterShipCountry"></SfTextBox>
+                </FilterTemplate>
+            </GridColumn>
+            <GridColumn Field=@nameof(OrderReturnView.City) HeaderText="@localResource?["ShipCity"]" Width="130">
+                <FilterTemplate>
+                    <SfTextBox @bind-Value="@filterShipCity"></SfTextBox>
+                </FilterTemplate>
+            </GridColumn>
+            <GridColumn Field=@nameof(OrderReturnView.PostalCode) HeaderText="@localResource?["ShipPostalCode"]"
+                        Width="130">
+                <FilterTemplate>
+                    <SfTextBox @bind-Value="@filterPostalCode"></SfTextBox>
+                </FilterTemplate>
+            </GridColumn>
+            <GridColumn Field=@nameof(OrderReturnView.TotalSumm) HeaderText="@localResource?["TotalSumm"]" Width="130">
+                <FilterTemplate>
+                    <SfNumericTextBox @bind-Value="@filterTotalSumm" TValue="double?"></SfNumericTextBox>
+                </FilterTemplate>
+            </GridColumn>
+            <GridColumn Field=@nameof(OrderReturnView.OrderDate) HeaderText="@localResource?["OrderDate"]"
+                        Format="dd.MM.yyyy" Width="130">
+                <FilterTemplate>
+                    <SfDatePicker @bind-Value="@filterOrderDate" TValue="DateTime?"></SfDatePicker>
+                </FilterTemplate>
+            </GridColumn>
+            <GridColumn Field=@nameof(OrderReturnView.RequiredDate) HeaderText="@localResource?["RequiredDate"]"
+                        Format="dd.MM.yyyy" Width="130">
+                <FilterTemplate>
+                    <SfDatePicker @bind-Value="@filterRequiredDate" TValue="DateTime?"></SfDatePicker>
+                </FilterTemplate>
+            </GridColumn>
+            <GridColumn Field=@nameof(OrderReturnView.ShippedDate) HeaderText="@localResource?["ShippedDate"]"
+                        Format="dd.MM.yyyy" Width="130">
+                <FilterTemplate>
+                    <SfDatePicker @bind-Value="@filterShippedDate" TValue="DateTime?"></SfDatePicker>
+                </FilterTemplate>
+            </GridColumn>
+        </GridColumns>
+    </ChildContent>
+
+</CustomGridAddEditDel>
+
+<br />
+
+
+<SfDialog @ref="@sfDialog" Width="700px" MinHeight="620" Height="620" ShowCloseIcon="true" Visible="false"
+          IsModal="true">
+    <DialogPositionData X="center" Y="top"></DialogPositionData>
+    <DialogTemplates>
+        <Header>
+            <p>@localResource["SelectProduct"]</p>
+        </Header>
+        <Content>
+            @* <div id="formId">
+            <ProductsControl @ref="@products" ExcluseProductsIds="@ExcludeProductIdsStr" ShowPageSize="false" />
+            </div>*@
+        </Content>
+    </DialogTemplates>
+    <DialogAnimationSettings Effect="DialogEffect.None"></DialogAnimationSettings>
+    <DialogButtons>
+        <DialogButton Content="OK" IsPrimary="true" Type="ButtonType.Button" OnClick="OnBtnOkClick"></DialogButton>
+        <DialogButton Content="Cancel" IsPrimary="false" OnClick="@(async ()=>await sfDialog.HideAsync())">
+        </DialogButton>
+    </DialogButtons>
+</SfDialog>

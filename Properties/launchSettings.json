@@ -1,0 +1,30 @@
+{
+  "profiles": {
+    "Northwind.Interface.Server": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "sfcustomers",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5284"
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "signup",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  },
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:1025",
+      "sslPort": 0
+    }
+  }
+}

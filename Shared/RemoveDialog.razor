@@ -1,0 +1,19 @@
+﻿@typeparam TypeGrid
+@using Syncfusion.Blazor.Popups
+@using Syncfusion.Blazor.TreeGrid
+@inherits RemoveDialogModel<TypeGrid>
+<SfDialog @ref="Dialog" Width="250px" Visible="false" ShowCloseIcon="true" IsModal="true">
+    <DialogEvents Closed="Closed"></DialogEvents>
+    <DialogTemplates>
+        @*Here you can customize the Header and Content of delete confirmation dialog*@
+        <Header>@GlobalStringLocalizer["DeleteRecord"]</Header>
+        <Content>
+            @{
+                <div> @string.Format("{0} {1}", @ShowTemplateContent ? @GlobalStringLocalizer["DeleteRecord_Content"] : "", @stringMessage)</div>
+            }</Content>
+    </DialogTemplates>
+    <DialogButtons>
+        <DialogButton OnClick="@OkClick" Content="@GlobalStringLocalizer["Ok"]" IsPrimary="true"></DialogButton>
+        <DialogButton OnClick="@CancelClick" Content="@GlobalStringLocalizer["Cancel"]"></DialogButton>
+    </DialogButtons>
+</SfDialog>

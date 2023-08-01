@@ -1,0 +1,33 @@
+﻿@page "/userInfo"
+@using Microsoft.AspNetCore.Components
+@using Syncfusion.Blazor.Buttons
+@inherits UserInfoModel<UserInfoRes>
+@attribute [Authorize]
+<EditForm Model="@UserReturn" OnValidSubmit="Submit">
+    <DataAnnotationsValidator />
+    <div class="row">
+        <div class="col-3">
+            <CustomInputText ID="EmailAddress" @bind-Value="@(UserReturn.EmailAddress)"
+                             Placeholder="@localResource?["EmailAddress"]" For="(() => UserReturn.EmailAddress)" />
+            <CustomInputText ID="FirstName" @bind-Value="@(UserReturn.FirstName)"
+                             Placeholder="@localResource?["FirstName"]" For="(() => UserReturn.FirstName)" />
+            <CustomInputText ID="LastName" @bind-Value="@(UserReturn.LastName)" Placeholder="@localResource?["LastName"]"
+                             For="(() => UserReturn.LastName)" />
+            <CustomInputText ID="Password" @bind-Value="@UserReturn.Password"
+                             Placeholder="@localResource?["Password"]" For="(() => UserReturn.Password)" InputTypeCustom="InputType.Password" />
+
+            <CustomInputText ID="PasswordConfirm" @bind-Value="@UserReturn.PasswordConfirm"
+                             Placeholder="@localResource?["Password_C"]" For="(() => UserReturn.PasswordConfirm)" InputTypeCustom="InputType.Password" />
+
+            <SfProgressButton @ref="@sfButtonRegister"
+                              id="btnRegister"
+                              Duration=600
+                              EnableProgress=true
+                              IconPosition="IconPosition.Right"
+                              IsPrimary=true
+                              Content="@localResource?["Save"]">
+            </SfProgressButton>
+        </div>
+
+    </div>
+</EditForm>

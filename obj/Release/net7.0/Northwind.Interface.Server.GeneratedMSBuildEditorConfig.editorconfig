@@ -1,0 +1,177 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Northwind.Interface.Server
+build_property.RootNamespace = Northwind.Interface.Server
+build_property.ProjectDir = C:\Users\user\Downloads\Publish\Northwind.Interface.Server\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\user\Downloads\Publish\Northwind.Interface.Server
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Components/CultureSelector.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDdWx0dXJlU2VsZWN0b3IucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Components/CustomToasMessage.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDdXN0b21Ub2FzTWVzc2FnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Components/SfToastShowMessage.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTZlRvYXN0U2hvd01lc3NhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Components/UserCard.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xVc2VyQ2FyZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/BaseComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQmFzZUNvbXBvbmVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/LoginPages/FogotPassword.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5QYWdlc1xGb2dvdFBhc3N3b3JkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/LoginPages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5QYWdlc1xMb2dpbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/LoginPages/reCaptcha/Captcha.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5QYWdlc1xyZUNhcHRjaGFcQ2FwdGNoYS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/LoginPages/Register.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5QYWdlc1xSZWdpc3Rlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/LoginPages/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5QYWdlc1xfSW1wb3J0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/SfCategorys.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2ZDYXRlZ29yeXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/SfCustomers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2ZDdXN0b21lcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/SfEmployees.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2ZFbXBsb3llZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/SfOrders.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2ZPcmRlcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/SfProducts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2ZQcm9kdWN0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/SfShippers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2ZTaGlwcGVycy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/SfSuppliers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2ZTdXBwbGllcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/SfUsersAdm.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2ZVc2Vyc0FkbS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/TestPages/FilterMenuGreedView.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdFBhZ2VzXEZpbHRlck1lbnVHcmVlZFZpZXcucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/TestPages/GridAgregate.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdFBhZ2VzXEdyaWRBZ3JlZ2F0ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/TestPages/GridToolTip.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdFBhZ2VzXEdyaWRUb29sVGlwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/TestPages/SfTreeSpeedDial.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdFBhZ2VzXFNmVHJlZVNwZWVkRGlhbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/TestPages/TreeGreedPaging.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdFBhZ2VzXFRyZWVHcmVlZFBhZ2luZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/UserInfo.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckluZm8ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Shared/CenteredCardLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENlbnRlcmVkQ2FyZExheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Shared/CountryCityPostCode.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvdW50cnlDaXR5UG9zdENvZGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Shared/CustomGridAddEditDel.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEN1c3RvbUdyaWRBZGRFZGl0RGVsLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Shared/HeaderDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEhlYWRlckRpYWxvZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Shared/LoginLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luTGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Shared/ProductsControl.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFByb2R1Y3RzQ29udHJvbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Shared/RemoveDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFJlbW92ZURpYWxvZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Shared/TitleHead.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFRpdGxlSGVhZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Shared/TopMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFRvcE1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-n3rm1g8wxq
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-anzovvuc7f
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Downloads/Publish/Northwind.Interface.Server/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

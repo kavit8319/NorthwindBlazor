@@ -1,0 +1,12 @@
+﻿@typeparam TValue
+@inherits SfGrid<TValue>
+
+<RemoveDialog @ref="@removeDialog" TypeGrid="TValue" Grid="@grid"></RemoveDialog>
+<SfGrid @ref="grid" TValue="TValue" AllowFiltering="true" Query="@QueryParam" AllowPaging="true"  Toolbar="@Toolbaritems"  @attributes="props">
+    @ChildContent
+    <GridTextWrapSettings WrapMode="WrapMode.Header"></GridTextWrapSettings>
+    <GridEvents RowSelecting="OnRowSelecting" DetailsExpanding="DetailExpandind" DetailsExpanded="DetailExpanded" OnActionBegin="OnActionBegin" OnActionComplete="CustomActionCompleteCallback" OnActionFailure="CustomFailureCallback" TValue="TValue"></GridEvents>
+    <GridPageSettings PageCount="@PAGE_COUNT" PageSize="@DEFAULT_PAGE_SIZE" PageSizes="@PageSizes"></GridPageSettings>
+   
+   @* <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Menu"></GridFilterSettings>*@
+</SfGrid>

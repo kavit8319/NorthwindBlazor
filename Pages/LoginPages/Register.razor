@@ -1,0 +1,69 @@
+﻿@page "/signup"
+@inherits RegisterModel<RegisterRes>
+@attribute [AllowAnonymous]
+@using Northwind.Interface.Server.Pages.LoginPages.reCaptcha
+
+<SfToastShowMessage @ref="@ToastObj" />
+<EditForm EditContext="registerEditContext" OnValidSubmit="SubmitAsync">
+    <DataAnnotationsValidator />
+    <div class="input-group">
+        <SfTextBox @bind-Value="@RegisterUser.FirstName"
+                   class="form-control rounded-start"
+                   Placeholder="@localResource["FirstName"]"
+                
+                   FloatLabelType="FloatLabelType.Auto" ID="firstName" />
+        <ValidationMessage For="(() => RegisterUser.FirstName)" />
+    </div>
+    <div class="input-group">
+             <SfTextBox @bind-Value="@RegisterUser.LastName"
+                               class="form-control rounded-start"
+                               Placeholder="@localResource["LastName"]"
+                              
+                               FloatLabelType="FloatLabelType.Auto" ID="lastName" />
+                    <ValidationMessage For="(() => RegisterUser.LastName)" />
+        </div>
+    <div class="input-group">
+        <SfTextBox @bind-Value="@RegisterUser.EmailAddress"
+                   class="form-control rounded-start"
+                   Placeholder="@localResource["EmailAddress"]"
+                   Type="InputType.Email"
+                   FloatLabelType="FloatLabelType.Auto" ID="emailAddress" />
+        <ValidationMessage For="(() => RegisterUser.EmailAddress)" />
+    </div>
+    <div class="input-group d-flex">
+        <SfTextBox @bind-Value="@RegisterUser.Password"
+                   class="form-control rounded-end"
+                   Placeholder="@localResource["Password"]"
+                   Type="InputType.Password"
+                   FloatLabelType="FloatLabelType.Auto"
+                   ID="Password" />
+        <ValidationMessage For="(() => RegisterUser.Password)" />
+    </div>
+    <div class="input-group d-flex">
+            <SfTextBox @bind-Value="@RegisterUser.PasswordConfirm"
+                       class="form-control rounded-end"
+                       Placeholder="@localResource["PasswordConfirm"]"
+                       Type="InputType.Password"
+                       FloatLabelType="FloatLabelType.Auto"
+                       ID="PasswordConfirm" />
+            <ValidationMessage For="(() => RegisterUser.PasswordConfirm)" />
+        </div>
+    <br />
+    <Captcha @ref="@captcha" CaptchaSuccessful="CaptchaSuccessful" />
+    <br />
+    <div class="input-group">
+        <SfProgressButton @ref="@sfButtonRegister" id="btnRegister" Duration=400 EnableProgress=true IconPosition="IconPosition.Right" IsPrimary=true Disabled="@(!EnableRegisterBtn)" Content="@localResource["Sign_in"]">
+            
+        </SfProgressButton>
+       @* <SfButton class="form-control btn btn-primary rounded px-3" type="submit" IsPrimary="true" />*@
+    </div>
+    <br />
+   
+    <div class="input-group d-md-flex">
+        <div class="w-50">
+            <a href="/login" class="link-primary">@localResource["Back"]</a>
+        </div>    
+    </div>
+</EditForm>
+
+

@@ -1,0 +1,238 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+	<TargetFramework>net7.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AnalysisLevel>latest-recommended</AnalysisLevel>
+	 
+  </PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        
+		<NoWarn>8604,8618</NoWarn>
+	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="Components\CustomRouteAuthentication.cs" />
+	  <Compile Remove="Controllers\AuthController.cs" />
+	  <Compile Remove="Controllers\CookieAuthenticationEvents.cs" />
+	</ItemGroup>
+
+
+  <ItemGroup>
+	 <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="Blazor.LocalStorage" Version="7.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.0-preview.2.23128.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Syncfusion.Blazor.Cards" Version="21.1.38" />
+    <PackageReference Include="Syncfusion.Blazor.Notifications" Version="21.1.38" />
+    <PackageReference Include="Syncfusion.Blazor.TreeGrid" Version="21.1.38" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.0-preview.2.23128.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\fontawesome\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CustomInputControl\CustomInputControl.csproj" />
+    <ProjectReference Include="..\Northwind.Interface.Shared\Northwind.Interface.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\Localization\CountryCityPostalCode.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CountryCityPostalCode.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Localization\FogotPasswordRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FogotPasswordRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Localization\GlobalResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GlobalResource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Localization\CategoryRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CategoryRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Localization\LoginRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LoginRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Localization\MainLayoutRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MainLayoutRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Localization\NavMenuRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NavMenuRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Localization\ProductsRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ProductsRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Localization\EmployeesRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EmployeesRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Localization\OrderRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>OrderRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Localization\RegisterRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RegisterRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Localization\ShippersRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ShippersRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Localization\SfResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SfResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Localization\UserCardRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UserCardRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Localization\UserInfoRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UserInfoRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Localization\UsersAdmRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UsersAdmRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Localization\SuppliersRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SuppliersRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Localization\CustomersRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CustomersRes.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\css\site.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\syncfusion-blazor-icons.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\ToggleButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+	  <EmbeddedResource Update="Resources\Localization\CountryCityPostalCode.resx">
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	    <LastGenOutput>CountryCityPostalCode.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\Localization\FogotPasswordRes.resx">
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	    <LastGenOutput>FogotPasswordRes.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\Localization\GlobalResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Localization\CategoryRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CategoryRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Localization\LoginRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LoginRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Localization\MainLayoutRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MainLayoutRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Localization\MainLayoutRes.ru-RU.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Localization\NavMenuRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NavMenuRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Localization\NavMenuRes.ru-RU.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Localization\ProductsRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProductsRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Localization\EmployeesRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmployeesRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Localization\OrderRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>OrderRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Localization\RegisterRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RegisterRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Localization\ShippersRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ShippersRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Localization\SfResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SfResources.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Localization\SfResources.ru-RU.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SfResources.ru-RU.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Localization\UserCardRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserCardRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Localization\UserCardRes.ru-RU.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Localization\UserInfoRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserInfoRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Localization\UsersAdmRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UsersAdmRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Localization\UsersAdmRes.ru-RU.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Localization\SuppliersRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SuppliersRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Localization\CustomersRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CustomersRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

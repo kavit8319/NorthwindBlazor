@@ -1,0 +1,9 @@
+﻿@using Syncfusion.Blazor.Notifications
+@inherits SfToast
+<SfToast @ref="@ToastObj" ID="toastApi" Title="titleasdfsdf" Width="@PropWith" ProgressDirection="ProgressDirection.LTR" ShowCloseButton="true" ShowProgressBar="true" NewestOnTop="true" Timeout="5000">
+    <ToastPosition X="Center" Y="Top"></ToastPosition>
+    <ToastAnimationSettings>
+        <ToastShowAnimationSettings Effect="ToastEffect.FadeIn" Easing="ToastEasing.Ease" Duration="600"></ToastShowAnimationSettings>
+        <ToastHideAnimationSettings Effect="ToastEffect.FadeIn" Easing="ToastEasing.Ease" Duration="400"></ToastHideAnimationSettings>
+    </ToastAnimationSettings>
+</SfToast>

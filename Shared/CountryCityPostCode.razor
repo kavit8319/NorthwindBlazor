@@ -1,0 +1,59 @@
+﻿@typeparam T
+@using Syncfusion.Blazor.DropDowns
+@inherits CountryCityPostCodeModel<T>
+<div class="row">
+    <CustomDDList ID="ddcountry" @ref=@DdlCountry
+                  TAdapter="CountrysAdaptersddl"
+                  TItem="Country"
+                  Tvalue="string"
+                  @bind-ValueT=@ValueCountry
+                  Placeholder="@localResource?["Country"]"
+                  PropTextItem="@nameof(Country.Name)"
+                  PropValueItem="@nameof(Country.Name)"
+                  For="@ForCountry"
+                  Query="@QueryCountry"
+                  OnAutoComplete="OnActionCompleteCountry"
+                  OnClose="OnCloseCountry"
+                  Filtering="FilterDDLCountry"
+                  AllowFiltering=true
+                  ShowClearButton=true
+                  CssClass="@($"{"e-static-clear"} ")" />
+    
+    <CustomDDList ID="ddcity" @ref="@DdlCity"
+                  TAdapter="CityAdapterddl"
+                  TItem="string"
+                  Tvalue="string"
+
+                  @bind-ValueT=@ValueCity
+                  Placeholder="@localResource?["City"]"
+                  For="@ForCity"
+                  OnClose="OnCloseDDLCity"
+                  Filtering="FilterDDLCity"
+                  AllowFiltering=true
+                  Query="@QueryCity"
+                  ShowClearButton=true
+                  CssClass="@($"{"e-static-clear"} ")" />
+  
+</div>
+<div class="row">
+    <CustomDDList ID="ddPostCode" @ref="@DdlPostCode"
+                  TAdapter="PostCodeAdapterddl"
+                  TItem="string"
+                  Tvalue="string"
+                  @bind-ValueT=@ValuePostalCode
+                  Placeholder="@localResource?["PostalCode"]"
+                  For="@ForPostCode"
+                  OnClose="OnCloseDDLPostCode"
+                  Filtering="FilterDDLPostCode"
+                  AllowFiltering=true
+                  Query="@QueryPostCode"
+                  ShowClearButton=true
+                  CssClass="@($"{"e-static-clear"} ")" />
+   
+    @{
+        if (RenderFragment != null)
+            @RenderFragment(ParamToRenderFragment)
+
+    }
+</div>
+

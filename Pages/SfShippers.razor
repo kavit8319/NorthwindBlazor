@@ -1,0 +1,30 @@
+﻿@page "/sfshippers"
+@inherits SfShippersModel<ShippersRes>
+@attribute [Authorize]
+<CustomGridAddEditDel @ref="@shipperGrid" TValue="ShipperReturnView" OnCustomActionBegin="OnActionBeginShipper" ID="GridShipper">
+    <SfDataManager AdaptorInstance="@typeof(ShipperAdaptor)" Adaptor="Adaptors.CustomAdaptor"></SfDataManager>
+    <GridEditSettings AllowEditing="true" AllowDeleting="true" AllowAdding="true" Mode="@EditMode.Dialog">
+        <Validator>
+            <DataAnnotationsValidator></DataAnnotationsValidator>
+        </Validator>
+        <HeaderTemplate>
+            @{
+                <HeaderDialog ObjectAddEdit="context"></HeaderDialog>
+            }
+        </HeaderTemplate>
+        <Template>
+            @{
+                var shipper = context as ShipperReturnView;
+                <div class="row">
+                    <CustomInputText ID="companyName" Tvalue="string" Placeholder="@localResource?["CompanyName"]" @bind-Value="@shipper.CompanyName" For="@(()=>@shipper.CompanyName)" />
+                    <CustomMaskTextBox ID="phone" Tvalue="string" Mask="+(000)000-00-00" For="@(()=>@shipper.Phone)" Placeholder="@localResource?["Phone"]" @bind-Value="@shipper.Phone" />
+                </div>
+            }
+        </Template>
+    </GridEditSettings>
+    <GridColumns>
+        <GridColumn Field=@nameof(ShipperReturnView.Id) IsPrimaryKey="true" Visible="false" IsIdentity="true" />
+        <GridColumn Field=@nameof(ShipperReturnView.CompanyName) FilterSettings="@(new FilterSettings{ Operator = Operator.Contains })" HeaderText="@localResource?["CompanyName"]" Width="150"></GridColumn>
+        <GridColumn Field=@nameof(ShipperReturnView.Phone) FilterSettings="@(new FilterSettings{ Operator = Operator.Contains })" HeaderText="@localResource?["CompanyName"]" Width="150"></GridColumn>
+    </GridColumns>
+</CustomGridAddEditDel>

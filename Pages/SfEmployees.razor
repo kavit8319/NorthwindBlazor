@@ -1,0 +1,257 @@
+﻿@page "/sfemployees"
+@attribute [Authorize]
+@inherits SfEmployeesModel<EmployeesRes>
+@using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.TreeGrid
+@using Syncfusion.Blazor.Calendars
+@using EditMode = Syncfusion.Blazor.TreeGrid.EditMode
+@using WrapMode = Syncfusion.Blazor.TreeGrid.WrapMode
+@using System.ComponentModel.DataAnnotations
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.Popups
+<SfDialog @ref="sfDialog" Width="700px" MinHeight="700" Height="700" ShowCloseIcon="true" Visible="false" IsModal="true">
+    <DialogPositionData X="center" Y="top"></DialogPositionData>
+    <DialogTemplates>
+        <Header>
+            <HeaderDialog ObjectAddEdit="@employeeRetViwDialog"></HeaderDialog>
+        </Header>
+        <Content>
+            <div id="formId">
+                <EditForm EditContext="@editContextEmployees">
+                    <ul class="validation-errors">
+                        @{
+                            if (iferrorExist)
+                            {
+                                var error = @messageStore[() => employeeRetViwDialog];
+                                <li>@(@error.Any() ? @error.First() : "")</li>
+                            }
+                        }
+                    </ul>
+                    <DataAnnotationsValidator />
+                    <div class="row">
+                        <CustomInputText ID="FirstName" Tvalue="string" Placeholder="@localResource?["FirstName"]" @bind-Value="@employeeRetViwDialog.FirstName" />
+                        <CustomInputText ID="LastName" Tvalue="string" Placeholder="@localResource?["LastName"]" @bind-Value="@employeeRetViwDialog.LastName" />
+                    </div>
+                    <div class="row">
+                        <CustomDDList ID="ddlTitleId" TAdapter="TitlesAdaprter"
+                                      TItem="TitleReturn" Tvalue="int?"
+                                      @bind-ValueT=@employeeRetViwDialog.TitleId
+                                      Placeholder="@localResource?["Title"]"
+                                      PropTextItem="@nameof(TitleReturn.Name)"
+                                      PropValueItem="@nameof(TitleReturn.Id)"
+                                      For="@(() => @employeeRetViwDialog.TitleId)"
+                                      ShowClearButton=true
+                                      AllowFiltering=true
+                                      CssClass="e-static-clear" />
+
+
+
+                        <CustomDDList ID="ddlTitleIdOfCourtesy" TAdapter="TitleOfCourtesyAdaptor"
+                                      TItem="string" Tvalue="string"
+                                      @bind-ValueT=@employeeRetViwDialog.TitleOfCourtesy
+                                      Placeholder="@localResource?["TitleOfCourtesy"]"
+                                      For="@(() => @employeeRetViwDialog.TitleOfCourtesy)"
+                                      ShowClearButton=true
+                                      AllowFiltering=true
+                                      CssClass="e-static-clear" />
+
+
+                    </div>
+                    <div class="row">
+
+                        <CustomInputDate ID="BirthDate" For="() => employeeRetViwDialog.BirthDate"
+                                         Placeholder="@localResource?["BirthDate"]"
+                                         @bind-ValueT="@employeeRetViwDialog.BirthDate" Tvalue="DateTime?" />
+
+
+                        <CustomInputDate ID="HireDate" For="() => employeeRetViwDialog.BirthDate"
+                                         Placeholder="@localResource?["HireDate"]"
+                                         @bind-ValueT="@employeeRetViwDialog.HireDate" Tvalue="DateTime?" />
+
+                    </div>
+                    <div class="row">
+                        <CustomDDList ID="ReportsTo" TAdapter="ReportToAdaptor" TItem="ReportToResult" Tvalue="int?"
+                                      @bind-ValueT="@employeeRetViwDialog.ReportsTo"
+                                      Placeholder="@localResource?["ReportTo"]"
+                                      PropTextItem="@nameof(ReportToResult.FullName)"
+                                      PropValueItem="@nameof(ReportToResult.EmployeeID)"
+                                      For="@(() => @employeeRetViwDialog.ReportsTo)"
+                                      Query="@queryReportTo"
+                                      ShowClearButton=true
+                                      AllowFiltering=true
+                                      CssCollMd="col-md-12"
+                                      CssClass="e-static-clear" />
+
+                    </div>
+                    
+                    <CountryCityPostCode @ref="@CountryCityPostCode" T="EmployeeReturnView" ParamToRenderFragment="@employeeRetViwDialog"
+                                         @bind-ValueCountry="@employeeRetViwDialog.Country" @bind-ValueCity="@employeeRetViwDialog.City" @bind-ValuePostalCode="@employeeRetViwDialog.PostalCode">
+                        <RenderFragment Context="ord">
+                            <CustomInputText ID="Address" Tvalue="string" Placeholder="@localResource?["Address"]" @bind-Value="@ord.Address" />
+                        </RenderFragment>
+                    </CountryCityPostCode>
+                    
+
+                    <div class="row">
+                        <div style="margin-bottom: 10px;">
+                            <CustomInputText ID="Notes" Tvalue="string" CssCollMd="col-md-12" Placeholder="@localResource?["Notes"]" @bind-Value="@employeeRetViwDialog.Notes" />
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <label class="form-label">@localResource?["Image"]</label>
+                            @if (employeeRetViwDialog.Photo != null && employeeRetViwDialog.Photo.Length > 0)
+                            {
+                                string str = "data:image/png;base64," + Convert.ToBase64String(employeeRetViwDialog.Photo, employeeRetViwDialog.Id <= 9 && employeeRetViwDialog.Id != 0 ? 78 : 0, employeeRetViwDialog.Id <= 9 && employeeRetViwDialog.Id != 0 ? employeeRetViwDialog.Photo.Length - 78 : employeeRetViwDialog.Photo.Length);
+                                <img src="@str" class="img-fluid rounded-3" alt="@employeeRetViwDialog.TitleName" />
+                                <button type="button" class="btn btn-warning" @onclick="((el)=>RemoveImage(el,employeeRetViwDialog))">@localResource?["Remove"]</button>
+                            }
+                            <SfUploader @ref="uploader">
+                                <UploaderEvents ValueChange="@((args)=>onChange(args, employeeRetViwDialog))"></UploaderEvents>
+                                <UploaderTemplates>
+                                    <Template Context="imageCont">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <img src="@(files.Count >0 ? files.FirstOrDefault()?.Path : string.Empty)" height="25px" width="25px" />
+                                                </td>
+                                                <td>
+                                                    <div style="padding: 7px;">
+                                                        <h5 title="@(imageCont.Name)">@(employeeRetViwDialog.FirstName + " " + employeeRetViwDialog.LastName)</h5>
+                                                        <i>@(imageCont.Size) Bytes</i>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <span class="e-icons e-file-remove-btn remove" id="removeIcon" @onclick="((el)=>RemoveImage(el,employeeRetViwDialog))" title="@localResource?["Remove"]"></span>
+                                    </Template>
+                                </UploaderTemplates>
+                            </SfUploader>
+                        </div>
+                    </div>
+
+                </EditForm>
+            </div>
+        </Content>
+    </DialogTemplates>
+    <DialogAnimationSettings Effect="DialogEffect.None"></DialogAnimationSettings>
+    <DialogEvents OnOpen="OnOpendDialog"></DialogEvents>
+    <DialogButtons>
+        <DialogButton Content="OK" IsPrimary="true" Type="ButtonType.Submit" OnClick="OnBtnOkClick"></DialogButton>
+        <DialogButton Content="Cancel" IsPrimary="false" OnClick="OnBtnCancelClick"></DialogButton>
+    </DialogButtons>
+</SfDialog>
+<RemoveDialog @ref="@removeDialog" TypeGrid="EmployeeReturnView" TreeGrid="@employeeTree"></RemoveDialog>
+<SfTreeGrid ID="treeEmployee" @ref="@employeeTree"
+            IdMapping="Id" 
+            HasChildMapping="isParent"
+            ParentIdMapping="ReportsTo"
+            TreeColumnIndex="1"
+            Toolbar="@Toolbaritems"
+            TValue="EmployeeReturnView" AllowPaging="false" AllowFiltering="false" AllowTextWrap="true" AllowSelection="true"
+            GridLines="@GridLine.Both">
+
+    <SfDataManager @ref="dm" AdaptorInstance="typeof(EmployeesAdaptor)" Adaptor="Adaptors.CustomAdaptor" />
+    <TreeGridPageSettings PageSizeMode=PageSizeMode.Root PageSizes="@(new string[]{"5","10","20"})"></TreeGridPageSettings>
+    <TreeGridEvents OnActionBegin="OnActionBegin" OnActionComplete="ActionComplete" TValue="EmployeeReturnView" RowSelected="OnRowSelected"></TreeGridEvents>
+    <TreeGridTextWrapSettings WrapMode="WrapMode.Both"></TreeGridTextWrapSettings>
+    <TreeGridEditSettings Dialog="@dialogSettings" Mode="EditMode.Dialog" AllowDeleting="true" AllowEditing="true" AllowAdding="true" />
+    <TreeGridColumns>
+        <TreeGridColumn Field=@nameof(EmployeeReturnView.Id) IsPrimaryKey="true" Visible="false" IsIdentity="true" />
+        <TreeGridColumn Field=@nameof(EmployeeReturnView.FirstName) HeaderText="@localResource?["FirstName"]" Width="250" MinWidth="200">
+
+            <Template>
+                <div class="card border-light bg-transparent border-0">
+                    @{
+                        var employee = context as EmployeeReturnView;
+                        String str = "";
+                        var empl = (context as EmployeeReturnView);
+                        if (empl.Lavel > 0)
+                        {
+                            var list = new List<string>();
+                            for (int i = 0; i < empl.Lavel; i++)
+                                list.Add("-");
+                            str = string.Join("", list);
+                        }
+                        Count++;
+                        <SfTooltip @key="@Count" Position="Position.TopLeft" Target="#cont">
+                            <TooltipTemplates>
+                                <Content>
+                                    @if (employee != null && employee.Photo != null && employee.Photo.Length > 0)
+                                    {
+                                        string str = "data:image/png;base64," + Convert.ToBase64String(employee.Photo, employee.Id <= 9 ? 78 : 0, employee.Id <= 9 ? employee.Photo.Length - 78 : employee.Photo.Length);
+                                        <img src="@str" class="img-fluid rounded-3 card-img-top" />
+                                    }
+                                    else
+                                    {
+                                        <img class="img-fluid rounded-3 card-img-top" src="/images/NoImage.png" />
+                                    }
+                                </Content>
+                            </TooltipTemplates>
+                            <div class="card-body m-0 p-0" id="cont">
+                                <p class="card-text p-0 m-0">@(str + " " + employee.TitleOfCourtesy + " " + employee.FirstName + " " + employee.LastName) </p>
+                            </div>
+                        </SfTooltip>
+                       @* @if (employee != null && employee.Photo != null && employee.Photo.Length > 0)
+                                        {
+                                            string strImg = "data:image/png;base64," + Convert.ToBase64String(employee.Photo, employee.Id <= 9 ? 78 : 0, employee.Id <= 9 ? employee.Photo.Length - 78 : employee.Photo.Length);
+                                            <img src="@strImg" class="img-fluid rounded-3 card-img-top" />
+                                        }
+                                        else
+                                        {
+                                            <img class="img-fluid rounded-3 card-img-top" src="/images/NoImage.png" />
+                    }*@
+                       
+                    }
+                </div>
+            </Template>
+        </TreeGridColumn>
+        <TreeGridColumn HeaderText="@localResource?["AddressDetail"]" Width="250" MinWidth="200">
+            <Template>
+                <div class="card border-light bg-transparent border-0">
+                    <div class="row g-0">
+                        <div class="col-12">
+                            <div class="card-body m-0 p-0">
+                                @{
+                                    var employee = context as EmployeeReturnView;
+                                    <p class="card-text p-0 m-0">@localResource["Address"]: <small class="text-muted">@employee.Address</small></p>
+                                    <p class="card-text p-0 m-0">@localResource["Country"]: <small class="text-muted">@employee.Country</small></p>
+                                    <p class="card-text p-0 m-0">@localResource["City"]: <small class="text-muted">@employee.City</small></p>
+                                    <p class="card-text p-0 m-0">@localResource["PostalCode"]: <small class="text-muted">@employee.PostalCode</small></p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </Template>
+        </TreeGridColumn>
+        <TreeGridColumn Field=@nameof(EmployeeReturnView.TitleName) HeaderText="@localResource?["Title"]" Width="150" />
+        <TreeGridColumn Field=@nameof(EmployeeReturnView.BirthDate) HeaderText="@localResource?["BirthDate"]" Format="d" Type="ColumnType.Date" Width="150" />
+        <TreeGridColumn Field=@nameof(EmployeeReturnView.HireDate) HeaderText="@localResource?["HireDate"]" Format="d" Type="ColumnType.Date" Width="150" />
+        <TreeGridColumn Field=@nameof(EmployeeReturnView.Notes) HeaderText="@localResource?["Notes"]" />
+    </TreeGridColumns>
+</SfTreeGrid>
+
+@*<SfSpeedDial Target="#treeEmployee_gridcontrol_content_table"
+             OpenIconCss="e-icons e-properties-1"
+             Position="FabPosition.BottomRight"
+             Direction="LinearDirection.Left" Mode="SpeedDialMode.Radial" ItemClicked="SpeedDialItemClick" IsModal="true">
+    <SpeedDialRadialSettings Direction="RadialDirection.AntiClockwise" OffSet="50px"></SpeedDialRadialSettings>
+    <SpeedDialItems>
+        <SpeedDialItem ID="Add" Title="Add" IconCss="e-icons e-add" />
+        <SpeedDialItem ID="Edit" Title="Edit" IconCss="e-icons e-edit" />
+        <SpeedDialItem ID="Delete" Title="Delete" IconCss="e-icons e-delete" />
+    </SpeedDialItems>
+</SfSpeedDial>
+*@
+
+
+
+
+
+
+
+
